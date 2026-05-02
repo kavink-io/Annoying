@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background: #0f0c29;
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Animated Blobs */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.6;
+    animation: float 10s infinite alternate ease-in-out;
+}
+.blob-1 { width: 300px; height: 300px; background: #ff00cc; top: -100px; left: -100px; }
+.blob-2 { width: 400px; height: 400px; background: #333399; bottom: -150px; right: -100px; animation-delay: -5s; }
+.blob-3 { width: 250px; height: 250px; background: #00c6ff; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-duration: 15s; }
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+/* Main Container */
+.app-container {
+    width: 400px;
+    height: 650px;
+    background: rgba(20, 20, 35, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+    overflow: hidden;
+    z-index: 10;
+    position: relative;
+}
+
+.screen {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 30px 24px;
+    animation: fadeIn 0.5s ease;
+}
+.screen.active {
+    display: flex;
+}
+
+h2 { margin-bottom: 15px; text-align: center; }
+p { text-align: center; margin-bottom: 20px; color: rgba(255,255,255,0.8); }
+
+.primary-btn {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 114, 255, 0.4);
+    transition: all 0.2s;
+    width: 100%;
+    position: relative;
+}
+.primary-btn:hover { transform: scale(1.05); }
+
+/* Stage 1: TOS */
+.tos-box {
+    background: rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.tos-box p { text-align: left; }
+.tos-box ol { padding-left: 20px; margin-top: 10px; }
+.tos-box li { margin-bottom: 15px; color: #ffeb3b; }
+
+
+/* Stage 2: Captcha */
+.captcha-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+    flex: 1;
+}
+.captcha-item {
+    background: rgba(255,255,255,0.1);
+    aspect-ratio: 1;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+.captcha-item:active { transform: scale(0.9); }
+.captcha-item.selected { background: rgba(0, 198, 255, 0.3); border-color: #00c6ff; }
+
+/* Stage 3: IQ Test */
+.iq-options { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; flex: 1; }
+.iq-btn {
+    padding: 15px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+}
+.iq-btn:hover { background: rgba(255,255,255,0.2); }
+.progress-bar-container { width: 100%; height: 10px; background: rgba(0,0,0,0.3); border-radius: 5px; overflow: hidden; margin-bottom: 20px; }
+.progress-bar { width: 0%; height: 100%; background: #00ff88; transition: width 0.3s; }
+#iq-result { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.certificate { background: #fff; color: #000; padding: 30px 20px; border-radius: 15px; text-align: center; margin-bottom: 30px; border: 8px solid #ffd700; box-shadow: 0 0 30px rgba(255,215,0,0.4); }
+.certificate h3 { color: #555; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; }
+.certificate h1 { color: #d32f2f; margin-top: 15px; font-size: 1.8rem; }
+.hidden { display: none !important; }
+
+/* Stage 4: Vault */
+.pin-display { font-size: 2.5rem; letter-spacing: 15px; text-align: center; margin-bottom: 30px; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 15px; min-height: 85px; }
+.pin-pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; flex: 1; }
+.pin-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.05); padding: 20px; font-size: 1.8rem; color: white; border-radius: 15px; cursor: pointer; transition: background 0.1s; }
+.pin-btn:active { background: rgba(255,255,255,0.3); transform: scale(0.95); }
+.action-btn { background: rgba(255,255,255,0.05); color: #aaa; }
+#pin-submit { background: rgba(0, 255, 136, 0.2); color: #00ff88; }
+#pin-clear { background: rgba(255, 65, 108, 0.2); color: #ff416c; }
+
+#wanted-poster { position: absolute; top:0;left:0;right:0;bottom:0; background: rgba(255,0,0,0.9); z-index: 100; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; animation: flash 0.2s infinite alternate; }
+.poster-content { background: #d7ccc8; color: #3e2723; padding: 30px; border-radius: 10px; width: 100%; text-align: center; border: 15px solid #5d4037; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+.poster-content h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: 5px; }
+.poster-image { font-size: 6rem; margin: 20px 0; border: 5px solid #3e2723; display: inline-block; padding: 20px; background: white; border-radius: 10px; }
+@keyframes flash { 0% { background: rgba(255,0,0,0.8); } 100% { background: rgba(180,0,0,0.95); } }
+
+/* Stage 5: Chatbox Inner styles */
+#screen-chat { padding: 0; }
+.chat-container-inner { display: flex; flex-direction: column; width: 100%; height: 100%; }
+
+.chat-header { padding: 20px 24px; background: rgba(0, 0, 0, 0.2); border-bottom: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 15px; }
+.avatar { width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #ff00cc, #333399); display: flex; justify-content: center; align-items: center; font-size: 1.2rem; font-weight: 600; box-shadow: 0 5px 15px rgba(255, 0, 204, 0.3); }
+.header-info { display: flex; flex-direction: column; }
+.header-info h2 { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.5px; text-align: left; margin: 0; }
+.header-info .status { font-size: 0.8rem; color: #00ff88; font-weight: 400; opacity: 0.8; }
+
+.chat-messages { flex: 1; padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; scroll-behavior: smooth; }
+.chat-messages::-webkit-scrollbar { width: 6px; }
+.chat-messages::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+
+.message { max-width: 85%; padding: 14px 18px; border-radius: 18px; font-size: 0.95rem; line-height: 1.5; animation: fadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 15px rgba(0,0,0,0.1); word-wrap: break-word; }
+.message.received { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.05); align-self: flex-start; border-bottom-left-radius: 4px; }
+.message.sent { background: linear-gradient(135deg, #00c6ff, #0072ff); align-self: flex-end; border-bottom-right-radius: 4px; transform-origin: right bottom; }
+
+.chat-input-area { padding: 20px 24px; background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); display: flex; gap: 12px; align-items: center; }
+#chat-input { flex: 1; padding: 14px 20px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px; background: rgba(0, 0, 0, 0.2); color: #fff; outline: none; font-size: 0.95rem; transition: all 0.3s ease; }
+#chat-input:focus { background: rgba(0, 0, 0, 0.4); border-color: rgba(0, 198, 255, 0.5); box-shadow: 0 0 15px rgba(0, 198, 255, 0.2); }
+#chat-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+
+#send-btn { width: 48px; height: 48px; border: none; border-radius: 50%; background: linear-gradient(135deg, #00c6ff, #0072ff); color: #fff; cursor: pointer; outline: none; transition: all 0.2s; position: relative; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0, 114, 255, 0.4); }
+#send-btn svg { width: 20px; height: 20px; transform: translateX(-1px) translateY(1px); }
+#send-btn:hover { box-shadow: 0 8px 25px rgba(0, 114, 255, 0.6); transform: scale(1.05); }
+
+#toast-container { position: fixed; top: 24px; right: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 1000; pointer-events: none; }
+.toast { background: rgba(30, 20, 50, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 0, 204, 0.3); padding: 16px 24px; border-radius: 16px; color: #fff; font-weight: 500; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1); display: flex; align-items: center; gap: 16px; animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: auto; position: relative; transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: grab; }
+.toast-icon { font-size: 1.8rem; filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); }
+.toast.hiding { animation: slideOut 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes slideIn { from { transform: translateX(120%) scale(0.9); opacity: 0; } to { transform: translateX(0) scale(1); opacity: 1; } }
+@keyframes slideOut { from { transform: translateX(0) scale(1); opacity: 1; } to { transform: translateX(120%) scale(0.9); opacity: 0; } }
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    body { position: fixed; width: 100%; height: 100%; top: 0; left: 0; overflow: hidden; }
+    .app-container { width: 100%; height: 100%; position: fixed; top: 0; left: 0; bottom: 0; right: 0; border-radius: 0; border: none; box-shadow: none; z-index: 10; }
+    .chat-header { border-radius: 0; }
+    .blob { display: none; }
+}

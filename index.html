@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chat with Kavin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="app-container">
+        <!-- Stage 1: TOS -->
+        <div id="screen-tos" class="screen active">
+            <h2>Terms & Conditions</h2>
+            <div class="tos-box">
+                <p>By continuing, you legally agree to the following:</p>
+                <ol>
+                    <li>You admit Kavin is the superior human being.</li>
+                    <li>You acknowledge your fashion sense is sub-par.</li>
+                    <li>You agree to stop being annoying (impossible).</li>
+                    <li>You surrender all rights to complain about this app.</li>
+                </ol>
+            </div>
+            <button id="btn-agree" class="primary-btn">I Agree</button>
+        </div>
+
+        <!-- Stage 2: Captcha -->
+        <div id="screen-captcha" class="screen">
+            <h2>Security Check</h2>
+            <p>Select all squares containing someone with a better fashion sense than you.</p>
+            <div class="captcha-grid" id="captcha-grid">
+                <!-- Javascript will populate this -->
+            </div>
+        </div>
+
+        <!-- Stage 3: IQ Test -->
+        <div id="screen-iq" class="screen">
+            <h2>IQ & Personality Test</h2>
+            <p id="iq-question">Question 1: What is 2 + 2?</p>
+            <div class="iq-options" id="iq-options">
+                <button class="iq-btn">Fish</button>
+                <button class="iq-btn">Potato</button>
+                <button class="iq-btn">Idk</button>
+            </div>
+            <div class="progress-bar-container">
+                <div id="iq-progress" class="progress-bar"></div>
+            </div>
+            <div id="iq-result" class="hidden">
+                <div class="certificate">
+                    <h3>Official Diagnosis</h3>
+                    <h1>100% Certified Potato 🥔</h1>
+                </div>
+                <button id="btn-iq-next" class="primary-btn">Accept Fate</button>
+            </div>
+        </div>
+
+        <!-- Stage 4: Vault -->
+        <div id="screen-vault" class="screen">
+            <h2 id="vault-title">Enter Passcode</h2>
+            <div class="pin-display" id="pin-display">****</div>
+            <div class="pin-pad">
+                <button class="pin-btn">1</button><button class="pin-btn">2</button><button class="pin-btn">3</button>
+                <button class="pin-btn">4</button><button class="pin-btn">5</button><button class="pin-btn">6</button>
+                <button class="pin-btn">7</button><button class="pin-btn">8</button><button class="pin-btn">9</button>
+                <button class="pin-btn action-btn" id="pin-clear">X</button>
+                <button class="pin-btn">0</button>
+                <button class="pin-btn action-btn" id="pin-submit">✓</button>
+            </div>
+            <div id="wanted-poster" class="hidden">
+                <div class="poster-content">
+                    <h1>WANTED</h1>
+                    <div class="poster-image">🤓</div>
+                    <h2>For being too annoying</h2>
+                    <button id="btn-enter-chat" class="primary-btn" style="margin-top: 20px;">Fine, let me in</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 5: Chat -->
+        <div id="screen-chat" class="screen">
+            <div class="chat-container-inner">
+                <div class="chat-header">
+                    <div class="avatar">K</div>
+                    <div class="header-info">
+                        <h2>Kavin</h2>
+                        <span class="status">Online (waiting to troll)</span>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message received">
+                        Hey Akshi! Tell me a secret! 🤫
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off">
+                    <button id="send-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
